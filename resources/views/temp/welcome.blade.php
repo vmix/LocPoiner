@@ -80,10 +80,14 @@
 
 <script>
     var map, google;
+    var markerImage = "images/loc_icons/svg/Arrow_6.svg";
+    var popupContent = "<p>Здесь можно разместить сообщение окна</p>" +
+        "<img src='https://www.flickr.com/photos/63335489@N02/37414815430/in/album-72157687826087984/' alt='' class='img-rounded img-responsive'>";
     var odessa = {
         lat: 46.466667,
         lng: 30.733333
     };
+
 
     function initMap() {
 
@@ -95,15 +99,36 @@
         };
 
         map = new google.maps.Map(document.getElementById('map'), options);
-        map.addListener('click', makeMarker, true);
+        makeMarker();
+
+
+
+
     }
+
+
 
     function makeMarker() {
         var marker = new google.maps.Marker({
             map: map,
             position: odessa,
-            title: 'Hello World!'
+            title: 'Hello World!',
+            icon: markerImage,
+            animation: google.maps.Animation.DROP
         });
+        var infoWindow = new google.maps.InfoWindow({
+            content: popupContent
+        });
+//        marker.addListener('click', function () {
+//            marker.setAnimation(null);
+//        });
+        marker.addListener('dblclick', function() {
+            infoWindow.open(map, marker);
+        });
+        google.maps.event.addListener(infoWindow,'closeclick',function(){
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        });
+
     }
 
 </script>

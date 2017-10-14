@@ -16,7 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('/welcome', function(){
-    return view('welcome');
+    return view('temp.welcome');
+});
+
+Route::get('/earthquakes', function(){
+    return view('temp.earthquakes');
 });
 
 Auth::routes();
