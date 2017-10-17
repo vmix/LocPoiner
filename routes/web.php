@@ -23,6 +23,10 @@ Route::get('/earthquakes', function(){
     return view('temp.earthquakes');
 });
 
+Route::get('/chat', function(){
+    return view('temp.chat');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

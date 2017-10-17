@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Arr;
+use Whoops\Handler\PrettyPageHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -49,5 +52,19 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    protected function whoopsHandler()
+    {
+        return tap(new PrettyPageHandler, function ($handler) {
+            $files = new Filesystem;
+            $handler->setEditor('sublime');
+            $handler->handleUnconditionally(true);
+            $handler->setApplicationPaths(
+                array_flip(Arr::except(
+                    array_flip($files->directories(base_path())), [base_path('vendor')]
+                ))
+            );
+        });
     }
 }
