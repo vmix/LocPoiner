@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Example Component</div>
+                    <div class="panel-heading">Веселый чат</div>
 
                     <div class="panel-body">
-                        I'm an example component!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta facilis laborum natus porro quo. Autem consequatur, doloremque est ex expedita, laudantium magni maiores minima minus perferendis porro quia tenetur vero?
                     </div>
                 </div>
             </div>
