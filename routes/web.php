@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
+Auth::routes();
+
 Route::get('/welcome', function(){
     return view('temp.welcome');
 });
@@ -27,7 +29,8 @@ Route::get('/chat', function(){
     return view('temp.chat');
 });
 
-Auth::routes();
+Route::get('/admin', 'AdminController@index');
+Route::get('/admin/users', 'UserController@adminView');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/services', 'HomeController@services')->name('services');
