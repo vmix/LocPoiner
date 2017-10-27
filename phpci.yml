@@ -1,0 +1,3 @@
+setup:
+    composer:
+        action: "install"
