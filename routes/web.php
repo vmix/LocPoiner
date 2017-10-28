@@ -17,17 +17,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/welcome', function(){
+Route::get('/welcome', function () {
     return view('temp.welcome');
 });
 
-Route::get('/earthquakes', function(){
+Route::get('/earthquakes', function () {
     return view('temp.earthquakes');
 });
 
-Route::get('/chat', function(){
+Route::get('/chat', function () {
     return view('temp.chat');
 });
+
+Route::get('dropzoneFile', 'PhotosController@dropzoneFile');
+Route::post('dropzoneFile', array('as' => 'dropzone.uploadfile', 'uses' => 'PhotosController@dropzoneUploadFile'));
+
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/users', 'UserController@adminView');
