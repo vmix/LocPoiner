@@ -17,24 +17,27 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/welcome', function () {
-    return view('temp.welcome');
-});
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/earthquakes', function () {
-    return view('temp.earthquakes');
-});
+    Route::get('/welcome', function () {
+        return view('temp.welcome');
+    });
 
-Route::get('/chat', function () {
-    return view('temp.chat');
-})->name('chat');
+    Route::get('/earthquakes', function () {
+        return view('temp.earthquakes');
+    });
+
+    Route::get('/chat', function () {
+        return view('temp.chat');
+    })->name('chat');
+
+    Route::get('/admin', 'AdminController@index')->name('admin');
+    Route::get('/admin/users', 'UserController@adminView');
+
+});
 
 Route::get('dropzoneFile', 'PhotosController@dropzoneFile')->name('upload');
 Route::post('dropzoneFile', array('as' => 'dropzone.uploadfile', 'uses' => 'PhotosController@dropzoneUploadFile'));
-
-
-Route::get('/admin', 'AdminController@index')->name('admin');
-Route::get('/admin/users', 'UserController@adminView');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/services', 'HomeController@services')->name('services');
