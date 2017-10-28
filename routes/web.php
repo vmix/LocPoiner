@@ -27,13 +27,13 @@ Route::get('/earthquakes', function () {
 
 Route::get('/chat', function () {
     return view('temp.chat');
-});
+})->name('chat');
 
-Route::get('dropzoneFile', 'PhotosController@dropzoneFile');
+Route::get('dropzoneFile', 'PhotosController@dropzoneFile')->name('upload');
 Route::post('dropzoneFile', array('as' => 'dropzone.uploadfile', 'uses' => 'PhotosController@dropzoneUploadFile'));
 
 
-Route::get('/admin', 'AdminController@index');
+Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/users', 'UserController@adminView');
 
 Route::get('/home', 'HomeController@index')->name('home');

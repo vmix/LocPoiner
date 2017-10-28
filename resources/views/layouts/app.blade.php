@@ -36,16 +36,22 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
+
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('admin') }}">Admin</a></li>
+                            <li><a href="{{ route('upload') }}">Photos</a></li>
+                            <li><a href="{{ route('chat') }}">Chat</a></li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -63,10 +69,22 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li><a href="{{ route('login') }}">Profile</a></li>
                                 </ul>
                             </li>
                         @endguest
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Temporary menu <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="/welcome">Welcome</a></li>
+                                    <li><a href="/earthquakes">Earthquakers</a></li>
+                                    <li><a href="/dropzoneFile">Upload Photos</a></li>
+                                </ul>
+                            </li>
                     </ul>
+
                 </div>
             </div>
         </nav>
